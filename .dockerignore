@@ -1,0 +1,12 @@
+*
+!src/
+!package*.json
+!tsconfig*.json
+!test/
+!.env
+!.eslintignore
+!.eslintrc.js
+!.npmrc
+!.prettierrc
+!nodemon.json
+!auth-keys/

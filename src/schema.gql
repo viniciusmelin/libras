@@ -1,0 +1,49 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+enum BankType {
+  BRADESCO
+  ITAU
+  SANTANDER
+}
+
+type Field {
+  api: String
+  defaultValue: String
+  description: String
+  fieldType: FieldType!
+  mapping: String!
+  name: String!
+  puppeteer: String
+  required: Boolean!
+}
+
+enum FieldType {
+  BOOL
+  DATE
+  DECIMAL
+  INT
+  TEXT
+}
+
+enum PrimaryCallType {
+  API
+  PUPPETEER
+}
+
+type Query {
+  contracts: [Service!]
+}
+
+type Service {
+  bankType: BankType!
+  description: String!
+  endPoint: String
+  fields: [Field!]!
+  id: ID!
+  name: String!
+  primaryCallType: PrimaryCallType!
+  startPoint: String
+  version: String!
+}
