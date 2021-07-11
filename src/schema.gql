@@ -8,14 +8,44 @@ enum BankType {
   SANTANDER
 }
 
+type Contract {
+  bankType: BankType!
+  createdAt: DateTime!
+  description: String!
+  endPoint: String
+  fields: [Field!]!
+  id: ID!
+  name: String!
+  primaryCallType: PrimaryCallType!
+  startPoint: String
+  updatedAt: DateTime!
+  version: String!
+}
+
+input ContractCreateInput {
+  bankType: BankType!
+  description: String!
+  endPoint: String
+  fields: [FieldsInputs!]!
+  name: String!
+  primaryCallType: PrimaryCallType!
+  startPoint: String
+  version: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type Field {
   api: String
   defaultValue: String
   description: String
   fieldType: FieldType!
-  mapping: String!
+  mapping: String
   name: String!
-  puppeteer: String
+  puppeteer: [Step!]
   required: Boolean!
 }
 
@@ -27,23 +57,48 @@ enum FieldType {
   TEXT
 }
 
+input FieldsInputs {
+  api: String
+  defaultValue: String
+  description: String
+  fieldType: FieldType!
+  mapping: String!
+  name: String!
+  puppeteer: [StepInputs!]!
+  required: Boolean!
+}
+
+type Mutation {
+  create(input: ContractCreateInput!): Contract!
+  update(id: ID!, input: ContractCreateInput!): Contract!
+}
+
 enum PrimaryCallType {
   API
   PUPPETEER
 }
 
-type Query {
-  contracts: [Service!]
+enum PuppeteerComponentType {
+  CLICK
+  TYPE
+  WAIT_FOR
+  WAIT_FOR_SELECTOR
 }
 
-type Service {
-  bankType: BankType!
-  description: String!
-  endPoint: String
-  fields: [Field!]!
-  id: ID!
-  name: String!
-  primaryCallType: PrimaryCallType!
-  startPoint: String
-  version: String!
+type Query {
+  contracts: [Contract!]
+}
+
+type Step {
+  component: PuppeteerComponentType!
+  query: String!
+  sequence: Float!
+  wait: Float!
+}
+
+input StepInputs {
+  component: PuppeteerComponentType!
+  query: String!
+  sequence: Float!
+  wait: Float!
 }

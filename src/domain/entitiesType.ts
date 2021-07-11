@@ -21,3 +21,10 @@ export enum PrimaryCallType {
   PUPPETEER = 'puppeteer',
   API = 'api',
 }
+
+export enum PuppeteerComponentType {
+  CLICK = 'click',
+  TYPE = 'type',
+  WAIT_FOR = 'wait_for',
+  WAIT_FOR_SELECTOR = 'wait_for_selector',
+}

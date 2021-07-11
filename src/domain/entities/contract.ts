@@ -1,4 +1,4 @@
-import { BankType, PrimaryCallType, Timestamp } from './entitiesType';
+import { BankType, PrimaryCallType, Timestamp } from '../entitiesType';
 import { FieldEntity } from './field';
 
 export interface ContractEntity extends Timestamp {

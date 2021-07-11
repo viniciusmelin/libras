@@ -3,7 +3,8 @@ import {
   BankType,
   FieldType,
   PrimaryCallType,
-} from '../../../lib/domain/entities/entitiesType';
+  PuppeteerComponentType,
+} from '../../domain/entitiesType';
 
 registerEnumType(BankType, {
   name: 'BankType',
@@ -15,4 +16,8 @@ registerEnumType(FieldType, {
 
 registerEnumType(PrimaryCallType, {
   name: 'PrimaryCallType',
+});
+
+registerEnumType(PuppeteerComponentType, {
+  name: 'PuppeteerComponentType',
 });

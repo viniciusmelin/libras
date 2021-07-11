@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { join } from 'path';
 import { GraphQLModule } from '@nestjs/graphql';
-import { ContractModule } from './contract/contract.module';
+import { ContractModule } from './application/contract/contract.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import config from './ormconfig';
@@ -16,6 +16,7 @@ import config from './ormconfig';
       sortSchema: true,
       debug: true,
       playground: true,
+      introspection: true,
     }),
     ContractModule,
   ],

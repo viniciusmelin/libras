@@ -1,11 +1,10 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
-import { FieldEntity, ContractEntity } from 'src/lib/domain/entities';
-import { BankType, PrimaryCallType } from '../../domain/entities/entitiesType';
+import { FieldEntity, ContractEntity } from 'src/domain/entities';
+import { BankType, PrimaryCallType } from '../../domain/entitiesType';
 import { Fields } from './field.model';
 import './enums.model';
-import { CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
-@ObjectType('Service')
+@ObjectType('Contract')
 export abstract class Contract implements ContractEntity {
   @Field(() => ID)
   public id?: string;
@@ -34,9 +33,9 @@ export abstract class Contract implements ContractEntity {
   @Field(() => PrimaryCallType)
   primaryCallType!: PrimaryCallType;
 
-  @CreateDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
+  @Field()
   createdAt?: Date;
 
-  @UpdateDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
+  @Field()
   updatedAt?: Date;
 }

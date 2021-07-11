@@ -1,9 +1,14 @@
-import { FieldEntity, ContractEntity } from 'src/lib/domain/entities';
+import { FieldEntity, ContractEntity } from 'src/domain/entities';
+import { BankType, PrimaryCallType } from '../../../../domain/entitiesType';
 import {
-  BankType,
-  PrimaryCallType,
-} from '../../../../domain/entities/entitiesType';
-import { Column, Entity, Generated, PrimaryGeneratedColumn } from 'typeorm';
+  Column,
+  CreateDateColumn,
+  Entity,
+  Generated,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
+import { Field } from './field.entity';
 
 @Entity({ name: 'contracts' })
 export class Contract implements ContractEntity {
@@ -33,14 +38,15 @@ export class Contract implements ContractEntity {
   primaryCallType!: PrimaryCallType;
 
   @Column({
-    array: true,
     type: 'jsonb',
+    array: false,
+    nullable: false,
   })
   fields!: FieldEntity[];
 
-  @Column({ default: Date.now() })
+  @CreateDateColumn({ default: () => 'CURRENT_TIMESTAMP' })
   createdAt?: Date;
 
-  @Column()
+  @UpdateDateColumn({ default: () => 'CURRENT_TIMESTAMP' })
   updatedAt?: Date;
 }

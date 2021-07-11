@@ -1,10 +1,9 @@
-import { Field, ObjectType } from '@nestjs/graphql';
+import { Field, InputType } from '@nestjs/graphql';
+import { FieldType } from '../../../domain/entitiesType';
+import { StepInputs } from './StepInputs.input';
 
-import { FieldEntity } from '../../../lib/domain/entities';
-import { FieldType } from '../../../lib/domain/entities/entitiesType';
-
-@ObjectType('Field')
-export abstract class Fields implements FieldEntity {
+@InputType()
+export class FieldsInputs {
   @Field(() => String)
   mapping!: string;
 
@@ -23,8 +22,8 @@ export abstract class Fields implements FieldEntity {
   @Field(() => String)
   name!: string;
 
-  @Field(() => String, { nullable: true })
-  puppeteer?: string;
+  @Field(() => [StepInputs])
+  public puppeteer?: StepInputs[];
 
   @Field(() => String, { nullable: true })
   api?: string;
