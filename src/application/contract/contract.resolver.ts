@@ -1,4 +1,6 @@
 import { Args, Mutation, Query, Resolver, ID } from '@nestjs/graphql';
+import graphqlTypeJson from 'graphql-type-json';
+
 import { ContractCreateInput } from '../../infrastructure/graphql/inputs/ContractInputs.input';
 import { Contract } from '../../infrastructure/graphql/contract.model';
 import { ContractService } from './contract.service';
@@ -29,5 +31,19 @@ export class ContractResolver {
     entity: ContractEntity,
   ): Promise<Contract> {
     return this.contractService.update(id, entity);
+  }
+
+  @Mutation(() => graphqlTypeJson)
+  async sendAnalysis(
+    @Args({ name: 'id', type: () => ID })
+    id: string,
+    @Args({ name: 'version', type: () => String })
+    version: string,
+    @Args({ name: 'data', type: () => graphqlTypeJson })
+    body: JSON,
+  ) {
+    return {
+      name: 'teste',
+    };
   }
 }
